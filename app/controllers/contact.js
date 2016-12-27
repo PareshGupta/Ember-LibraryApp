@@ -16,10 +16,17 @@ export default Ember.Controller.extend({
 
   actions: {
     sendMessage() {
-      this.set('responseMessage', 'We got your message and we’ll get in touch soon');
-      this.set('message', '');
-      this.set('emailAddress', '');
-      this.set('name', '');
+      let name = this.get('name'),
+          emailAddress = this.get('emailAddress'),
+          message = this.get('message');
+
+      let contact = this.store.createRecord('contact', { name: name, email: emailAddress, message: message });
+      contact.save().then(() => {
+        this.set('responseMessage', 'We got your message and we’ll get in touch soon');
+        this.set('message', '');
+        this.set('emailAddress', '');
+        this.set('name', '');
+      });
     }
   },
 
@@ -27,5 +34,5 @@ export default Ember.Controller.extend({
     console.log('observer is called', this.get('message'));
   })
 
-  
+
 });
