@@ -5,6 +5,20 @@ export default Ember.Route.extend({
     return this.store.createRecord('library');  
   },
 
+  // below is a hook method used when need to set params with along with routes.
+  // in this case:- title and buttonLabel used in form.hbs
+  setupController: function (controller, model) {
+    this._super(controller, model);
+
+    controller.set('title', 'Create a new library');
+    controller.set('buttonLabel', 'Create');
+  },
+
+  // below is a hook method used when need to render differenttemplate then default.(by default:- new.hbs).
+  renderTemplate() {
+    this.render('libraries/form');
+  },
+
   actions: {
     saveLibrary(newLibrary) {
       newLibrary.save().then(() => {
