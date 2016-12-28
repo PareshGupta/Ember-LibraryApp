@@ -10,7 +10,9 @@ export default Ember.Route.extend({
       let confirmation = confirm('Are you sure?');
 
       if(confirmation) {
-        library.destroyRecord();
+        library.destroyRecord().then(() => {
+          this.get('flashMessages').success('Library successfully deleted.');
+        });
       }
     }
   }
