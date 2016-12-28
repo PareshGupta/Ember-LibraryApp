@@ -6,22 +6,28 @@
   <fieldset>
     <legend>Contact Form</legend>
 
-    <div class="form-group">
-      <label for="inputEmail" class="col-lg-2 control-label">Full Name</label>
+    <div class="form-group has-feedback {{if nameValid 'has-success'}}">
+      <label for="inputEmail" class="col-lg-2 control-label">Full Name*</label>
       <div class="col-lg-10">
         {{input value=name type="text" class="form-control" id="inputName" placeholder="FullName"}}
+        {{#if nameValid}}
+          <span class="glyphicon glyphicon-ok form-control-feedback"></span>
+        {{/if}}
       </div>
     </div>
 
-    <div class="form-group">
-      <label for="inputPassword" class="col-lg-2 control-label">Email</label>
+    <div class="form-group has-feedback {{if emailValid 'has-success'}}">
+      <label for="inputPassword" class="col-lg-2 control-label">Email*</label>
       <div class="col-lg-10">
         {{input value=emailAddress type="email" class="form-control" id="inputPassword" placeholder="Email"}}
+        {{#if emailValid}}
+          <span class="glyphicon glyphicon-ok form-control-feedback"></span>
+        {{/if}}
       </div>
     </div>
 
     <div class="form-group">
-      <label for="textArea" class="col-lg-2 control-label">Message</label>
+      <label for="textArea" class="col-lg-2 control-label">Message*</label>
       <div class="col-lg-10">
         {{textarea value=message class="form-control" rows="3" id="textArea" placeholder="Send us your query or message" }}
       </div>

@@ -9,7 +9,7 @@ export default Ember.Controller.extend({
 
   emailValid: Ember.computed.match('emailAddress', /^.+@.+\..+$/),
   messageValid: Ember.computed.gte('message.length', 10),
-  nameValid: Ember.computed.gt('name.length', 0),
+  nameValid: Ember.computed.notEmpty('name'),
 
   isValid: Ember.computed.and('nameValid', 'messageValid', 'emailValid'),
   isDisabled: Ember.computed.not('isValid'),
